@@ -27,17 +27,17 @@ struct SpaceAge {
         self.seconds = seconds
     }
 
-    var onEarth: Double { convertOrbitablePeriod(from: seconds, on: .onEarth).rounded(to: 2) }
-    var onMercury: Double { convertOrbitablePeriod(from: seconds, on: .onMercury).rounded(to: 2) }
-    var onVenus: Double { convertOrbitablePeriod(from: seconds, on: .onVenus).rounded(to: 2) }
-    var onMars: Double { convertOrbitablePeriod(from: seconds, on: .onMars).rounded(to: 2) }
-    var onJupiter: Double { convertOrbitablePeriod(from: seconds, on: .onJupiter).rounded(to: 2) }
-    var onSaturn: Double { convertOrbitablePeriod(from: seconds, on: .onSaturn).rounded(to: 2) }
-    var onUranus: Double { convertOrbitablePeriod(from: seconds, on: .onUranus).rounded(to: 2) }
-    var onNeptune: Double { convertOrbitablePeriod(from: seconds, on: .onNeptune).rounded(to: 2) }
+    var onEarth: Double { convertOrbitablePeriod(from: seconds, on: .Earth).rounded(to: 2) }
+    var onMercury: Double { convertOrbitablePeriod(from: seconds, on: .Mercury).rounded(to: 2) }
+    var onVenus: Double { convertOrbitablePeriod(from: seconds, on: .Venus).rounded(to: 2) }
+    var onMars: Double { convertOrbitablePeriod(from: seconds, on: .Mars).rounded(to: 2) }
+    var onJupiter: Double { convertOrbitablePeriod(from: seconds, on: .Jupiter).rounded(to: 2) }
+    var onSaturn: Double { convertOrbitablePeriod(from: seconds, on: .Saturn).rounded(to: 2) }
+    var onUranus: Double { convertOrbitablePeriod(from: seconds, on: .Uranus).rounded(to: 2) }
+    var onNeptune: Double { convertOrbitablePeriod(from: seconds, on: .Neptune).rounded(to: 2) }
     
     private func convertOrbitablePeriod(from seconds: Double, on planet: orbitalPeriod) -> Double {
-        if planet == .onEarth {
+        if planet == .Earth {
             return (seconds / secondsPerYearOnEarth)
         }
 
@@ -49,14 +49,14 @@ struct SpaceAge {
 fileprivate enum orbitalPeriod: Double {
     typealias RawValue = Double
 
-    case onEarth = 365.25
-    case onMercury = 0.2408467
-    case onVenus = 0.61519726
-    case onMars = 1.8808158
-    case onJupiter = 11.862615
-    case onSaturn = 29.447498
-    case onUranus = 84.016846
-    case onNeptune = 164.79132
+    case Earth = 365.25
+    case Mercury = 0.2408467
+    case Venus = 0.61519726
+    case Mars = 1.8808158
+    case Jupiter = 11.862615
+    case Saturn = 29.447498
+    case Uranus = 84.016846
+    case Neptune = 164.79132
 }
 
 extension Double {
