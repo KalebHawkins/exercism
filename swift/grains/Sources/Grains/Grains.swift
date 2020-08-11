@@ -21,10 +21,9 @@ struct Grains {
     enum GrainsError: Error {
         case inputTooHigh(message: String)
         case inputTooLow(message: String)
-
     }
     
-    static var total: UInt64 = 18_446_744_073_709_551_615
+    static var total: UInt64 = UInt64.max
     
     static func square(_ squarePosition: Int) throws -> UInt64 {
         let errorString = "Input[\(squarePosition)] invalid. Input should be between 1 and 64 (inclusive)"
