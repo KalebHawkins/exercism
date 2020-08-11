@@ -11,6 +11,8 @@
 //
 //He answers 'Whatever.' to anything else.
 
+import Foundation
+
 struct Bob {
     static func hey(_ input: String) -> String {
         var output: String = "Whatever."
@@ -30,38 +32,19 @@ struct Bob {
 
 extension String {
     func isAllLettersUpper() -> Bool {
-        for char in self {
-            if char.isLetter && char.isLowercase  {
-                return false
-            }
-        }
-        
-        return true
+        return self == self.uppercased()
     }
     
     func hasLetters() -> Bool {
-        for char in self {
-            if char.isLetter {
-                return true
-            }
-        }
-        return false
+        return self.rangeOfCharacter(from: .letters) != nil
     }
     
     func isQuestion() -> Bool {
-        if self.suffix(1) == "?" {
-            return true
-        }
-        
-        return false
+        return self.suffix(1) == "?"
     }
     
     func isAllWhiteSpace() -> Bool {
-        for char in self {
-            if !char.isWhitespace {
-                return false
-            }
-        }
-        return true
+        return self.trimmingCharacters(in: .whitespaces).isEmpty
     }
+
 }
