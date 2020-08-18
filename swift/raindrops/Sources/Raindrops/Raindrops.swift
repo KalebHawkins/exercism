@@ -21,9 +21,3 @@ struct Raindrops {
         return resultingString.isEmpty ? String(numberOfDrops) : resultingString
     }
 }
-
-extension Int {
-    var factors: [Int] {
-        return (1...self).filter({ self % $0 == 0 })
-    }
-}
