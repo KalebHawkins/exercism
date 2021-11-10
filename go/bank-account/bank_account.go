@@ -6,7 +6,7 @@ import (
 
 // Define the Account type here.
 type Account struct {
-	m                sync.Mutex
+	sync.Mutex
 	AvailableBalance int64
 	IsClosed         bool
 }
@@ -16,15 +16,14 @@ func Open(amount int64) *Account {
 		return nil
 	}
 
-	acc := Account{}
-	acc.AvailableBalance += amount
-
-	return &acc
+	return &Account{
+		AvailableBalance: amount,
+	}
 }
 
 func (a *Account) Balance() (int64, bool) {
-	a.m.Lock()
-	defer a.m.Unlock()
+	a.Lock()
+	defer a.Unlock()
 
 	if a.IsClosed {
 		return 0, false
@@ -34,8 +33,8 @@ func (a *Account) Balance() (int64, bool) {
 }
 
 func (a *Account) Deposit(amount int64) (int64, bool) {
-	a.m.Lock()
-	defer a.m.Unlock()
+	a.Lock()
+	defer a.Unlock()
 
 	if !a.IsClosed && a.AvailableBalance+amount >= 0 {
 		a.AvailableBalance += amount
@@ -46,8 +45,8 @@ func (a *Account) Deposit(amount int64) (int64, bool) {
 }
 
 func (a *Account) Close() (int64, bool) {
-	a.m.Lock()
-	defer a.m.Unlock()
+	a.Lock()
+	defer a.Unlock()
 
 	if a.IsClosed {
 		return 0, !a.IsClosed
